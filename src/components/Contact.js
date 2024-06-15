@@ -27,13 +27,13 @@ export const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setButtonText("Sending Message ..");
-    let response = await fetch("http://localhost:5000/contact", {
+    let response = await fetch(" https://email-o517ob1fy-jhonvnbbs-projects.vercel.app", {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
       },
       body: JSON.stringify(formDetails),
-    });
+    });    
     setButtonText("Send");
     let result = await response.json();
     setFormDetails(formInitialDetails);
