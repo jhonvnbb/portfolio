@@ -80,6 +80,13 @@ p.danger {
   color: red;
 }
 
+.heading-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /************ Navbar Css ************/
 nav.navbar {
   padding: 18px 0;
@@ -401,13 +408,28 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 .profile {
   color: #fff;
   padding: 100px 0;
-  border-radius: 0.5rem;
+}
+.profile h2{
+  font-weight: 900;
+  z-index: 2;
+  position: relative;
 }
 .profile h2 span{
   background: #fff;
   padding: 5px 10px;
   font-weight: 700;
   color: #000;
+}
+.profile .background-text {
+  margin-bottom: 50px;
+  position: absolute;
+  font-size: 120px;
+  color: rgb(8, 27, 41, 0.5);
+  font-weight: 900;
+  z-index: 1;
+  user-select: none;
+  pointer-events: none;
+  white-space: nowrap;
 }
 .profile .vertical-line{
   width: 100px;
@@ -450,14 +472,9 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 .star.filled {
   color: #ffc107;
 }
-.map-button{
-  align-items: center;
-  display: flex;
-  justify-content: center;
-}
-.profile button {
+.map-button button {
   font-weight: 700;
-  width: 25%;
+  width: 100%;
   color: #fff;
   background-color: transparent;
   border: 1px solid #fff;
@@ -467,14 +484,14 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   position: relative;
   transition: 0.3s ease-in-out;
 }
-.profile button span {
+.map-button button span {
   z-index: 1;
   position: relative;
 }
-.profile button:hover {
+.map-button button:hover {
   color: #000;
 }
-.profile button::before {
+.map-button button::before {
   content: "";
   background: #00ffee;
   width: 0;
@@ -485,19 +502,25 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   z-index: 0;
   transition: 0.3s ease-in-out;
 }
-.profile button:hover::before {
+.map-button button:hover::before {
   width: 100%;
 }
 
-@media (max-width: 364px) {
-  .img-fluid {
-    width: 75%;
+@media (max-width: 1200px) {
+  .project .background-text {
+    font-size: 100px;
+  }
+  .map-button button {
+    font-size: 16px;
   }
 }
-@media (max-width: 576px) {
-  .skills .col-6 {
-    flex: 0 0 50%;
-    max-width: 50%;
+
+@media (max-width: 992px) {
+  .project .background-text {
+    font-size: 90px;
+  }
+  .map-button button {
+    font-size: 14px;
   }
 }
 @media (max-width: 768px) {
@@ -510,10 +533,34 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   .profile h2{
     text-align: center;
   }
-  .profile button {
-    width: 40%;
-    padding: 12px 27px;
-    font-size: 14px;
+  .profile .background-text {
+    font-size: 80px;
+  }
+  .map-button button {
+    font-size: 12px;
+  }
+}
+@media (max-width: 576px) {
+  .skills .col-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  .profile .background-text {
+    font-size: 70px;
+  }
+  .map-button button {
+    font-size: 10px;
+  }
+}
+@media (max-width: 364px) {
+  .img-fluid {
+    width: 75%;
+  }
+  .profile .background-text {
+    font-size: 60px;
+  }
+  .map-button button {
+    font-size: 8px;
   }
 }
 
@@ -523,18 +570,31 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   padding: 80px 0;
   position: relative;
   background-color: #000;
+  text-align: center;
 }
 .project h2 {
-  font-size: 45px;
   text-align: center;
   letter-spacing: 5px;
+  position: relative;
+  font-weight: 900;
+  z-index: 2;
+  display: inline-block;
 }
 .project h2 span {
   background-color: #fff;
   padding: 0 10px;
   border-radius: 2px;
-  font-weight: 700;
   color: #000;
+}
+.project .background-text {
+  position: absolute;
+  font-size: 120px;
+  color: rgba(0, 255, 238, 0.5);
+  font-weight: 900;
+  z-index: 1;
+  user-select: none;
+  pointer-events: none;
+  white-space: nowrap;
 }
 .project .vertical-line {
   width: 1px;
@@ -598,11 +658,13 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   overflow: hidden;
   margin-bottom: 50px;
   transition: ease-out 0.5s;
+  cursor: pointer;
 }
 .proj-imgbx:hover {
   transform: scale(1.15);
   z-index: 2;
-  border: 5px solid #fff;
+  border: 2px solid #00ffee;
+  box-shadow: 1px 2px 8px rgb(255, 255, 255, 0.5);
 }
 .proj-imgbx::before {
   content: "";
@@ -643,30 +705,66 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   font-size: 15px;
   letter-spacing: 0.8px;
 }
+@media (max-width: 1200px) {
+  .project .background-text {
+    font-size: 100px;
+  }
+}
+
+@media (max-width: 992px) {
+  .project .background-text {
+    font-size: 90px;
+  }
+}
+
+@media (max-width: 768px) {
+  .project .background-text {
+    font-size: 80px;
+  }
+}
+
+@media (max-width: 576px) {
+  .project .background-text {
+    font-size: 70px;
+  }
+}
+@media (max-width: 364px) {
+  .project .background-text {
+    font-size: 10px;
+  }
+}
 
 
 /************ Contact Css ************/
 .contact {
   background: linear-gradient(90.21deg, #00ffee -5.91%, #081b29 111.58%);
-  padding: 60px 0 200px 0;
+  padding: 100px 0 200px 0;
 }
 .contact img {
   width: 92%;
 }
 .contact h2 {
-  font-size: 45px;
-  margin-bottom: 30px;    
   letter-spacing: 5px;
+  z-index: 2;
+  font-weight: 900;
 }
 .contact h2 span{
   border-radius: 2px;
-  font-size: 45px;
   color: #000;     
   background-color: #fff;
   letter-spacing: 5px;
   padding: 0 10px;
-  font-weight: 700;
   margin-bottom: 30px;
+}
+.contact .background-text {
+  position: absolute;
+  font-size: 120px;
+  color: rgb(8, 27, 41, 0.5);
+  font-weight: 900;
+  z-index: 1;
+  user-select: none;
+  pointer-events: none;
+  white-space: nowrap;
 }
 .contact form input,
 .contact form textarea {
@@ -732,9 +830,35 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 .contact form button:hover::before {
   width: 100%;
 }
+@media (max-width: 1200px) {
+  .contact .background-text {
+    font-size: 100px;
+  }
+}
+
+@media (max-width: 992px) {
+  .contact .background-text {
+    font-size: 90px;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact .background-text {
+    font-size: 80px;
+  }
+}
+
 @media (max-width: 576px) {
+  .project .background-text {
+    font-size: 70px;
+  }
   .contact h2{
     text-align: center;
+  }
+}
+@media (max-width: 364px) {
+  .contact .background-text {
+    font-size: 60px;
   }
 }
 

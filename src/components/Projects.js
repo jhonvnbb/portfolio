@@ -67,15 +67,18 @@ export const Projects = () => {
   const mobileProjects = projects.filter(project => project.title === "Quick Job" || project.title === "Postread");
 
   return (
-    <section className="project" id="projects">
-      <Container>
-        <Row>
-          <Col size={12}>
-            <TrackVisibility>
-              {({ isVisible }) =>
+  <section className="project" id="projects">
+    <Container>
+      <Row>
+        <Col size={12}>
+          <TrackVisibility>
+            {({ isVisible }) =>
               <div className={isVisible ? "animate__animated animate__fadeIn": ""}>
-                <h2><span className="me-1">P</span>rojects</h2>
-                <div class="vertical-line my-5"></div>
+                <div className="heading-container">
+                  <h2><span className="me-1">P</span>rojects</h2>
+                  <div className="background-text">PROJECTS</div>
+                </div>
+                <div className="vertical-line my-5"></div>
                 <Tab.Container id="projects-tabs" defaultActiveKey="first">
                   <Nav variant="pills" className="nav-pills mb-5 justify-content-center align-items-center" id="pills-tab">
                     <Nav.Item>
@@ -97,7 +100,7 @@ export const Projects = () => {
                               <ProjectCard
                                 key={index}
                                 {...project}
-                                />
+                              />
                             )
                           })
                         }
@@ -111,7 +114,7 @@ export const Projects = () => {
                               <ProjectCard
                                 key={index}
                                 {...project}
-                                />
+                              />
                             )
                           })
                         }
@@ -125,7 +128,7 @@ export const Projects = () => {
                               <ProjectCard
                                 key={index}
                                 {...project}
-                                />
+                              />
                             )
                           })
                         }
@@ -133,11 +136,12 @@ export const Projects = () => {
                     </Tab.Pane>
                   </Tab.Content>
                 </Tab.Container>
-              </div>}
-            </TrackVisibility>
-          </Col>
-        </Row>
-      </Container>
-    </section>
+              </div>
+            }
+          </TrackVisibility>
+        </Col>
+      </Row>
+    </Container>
+  </section>
   )
 }

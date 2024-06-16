@@ -13,7 +13,6 @@ export const Banner = () => {
   const toRotate = ["Front End Dev,", "Back End Dev,", "Fullstack Dev,"];
   const period = 2000;
 
-  // State untuk mengontrol visibilitas modal
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
@@ -49,7 +48,6 @@ export const Banner = () => {
     }
   };
 
-  // Fungsi untuk membuka dan menutup modal
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
 
@@ -60,13 +58,17 @@ export const Banner = () => {
           <Col xs={12} md={6} xl={7}>
             <TrackVisibility>
               {({ isVisible }) =>
-              <div className={isVisible ? "animate__animated animate__fadeIn" : ""}>
-                <span className="tagline">Welcome to my Portfolio</span>
-                <h1>{`Hi, I'm `}<span className="my-name">Jhonvnbb </span></h1>
-                <h1 className="mt-2 mb-5 fw-bold"><span className="txt-rotate" dataPeriod="1000" data-rotate='[ "Web Developer", "Web Designer", "UI/UX Designer" ]'><span className="wrap">{text}</span></span></h1>
+                <div className={isVisible ? "animate__animated animate__fadeInLeft" : ""}>
+                  <span className="tagline">Welcome to my Portfolio</span>
+                  <h1>{`Hi, I'm `}<span className="my-name">Jhonvnbb </span></h1>
+                  <h1 className="mt-2 mb-5 fw-bold">
+                    <span className="txt-rotate" dataPeriod="1000" data-rotate='[ "Web Developer", "Web Designer", "UI/UX Designer" ]'>
+                      <span className="wrap">{text}</span>
+                    </span>
+                  </h1>
                   <p>"Embrace challenges as stepping stones to success. Your resilience defines you. Believe in your journey, stay focused, and conquer every obstacle. You've got this!"</p>
-                  <button onClick={handleShowModal}>View CV</button>
-              </div>}
+                  <button className="animate__animated animate__pulse animate__infinite" onClick={handleShowModal}>View CV</button>
+                </div>}
             </TrackVisibility>
           </Col>
           <Col xs={12} md={6} xl={5}>
