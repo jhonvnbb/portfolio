@@ -451,8 +451,10 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 }
 .profile p{
   text-align: justify;
-  font-size: 13px;
-  color: #fff;
+  font-size: 15px;
+  margin: 15px auto;
+  color: #efefef;
+  width: 85%;
 }
 .img-fluid {
   max-width: 100%;
@@ -485,46 +487,22 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 .star.filled {
   color: #ffc107;
 }
-.map-button button {
-  font-weight: 700;
+.map iframe {
   width: 100%;
-  color: #fff;
-  background-color: transparent;
-  border: 1px solid #fff;
-  padding: 14px 34px;
-  font-size: 18px;
-  border-radius: 0;
-  position: relative;
-  transition: 0.3s ease-in-out;
-}
-.map-button button span {
-  z-index: 1;
-  position: relative;
-}
-.map-button button:hover {
-  color: #000;
-}
-.map-button button::before {
-  content: "";
-  background: #00ffee;
-  width: 0;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 0;
-  transition: 0.3s ease-in-out;
-}
-.map-button button:hover::before {
-  width: 100%;
+  height: 400px;
+  border: 0;
+  box-shadow: 1px 2px 25px rgb(255, 255, 255, 0.5);
 }
 
 @media (max-width: 1200px) {
   .profile .background-text {
     font-size: 100px;
   }
-  .map-button button {
-    font-size: 16px;
+  .map iframe {
+    height: 350px;
+  }
+  .profile p{
+    width: 100%;
   }
 }
 
@@ -532,8 +510,11 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   .profile .background-text {
     font-size: 90px;
   }
-  .map-button button {
-    font-size: 14px;
+  .map iframe {
+    height: 300px;
+  }
+  .profile p{
+    width: 100%;
   }
 }
 @media (max-width: 768px) {
@@ -549,8 +530,11 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   .profile .background-text {
     font-size: 80px;
   }
-  .map-button button {
-    font-size: 12px;
+  .map iframe {
+    height: 250px;
+  }
+  .profile p{
+    width: 100%;
   }
 }
 @media (max-width: 576px) {
@@ -561,8 +545,11 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   .profile .background-text {
     font-size: 70px;
   }
-  .map-button button {
-    font-size: 10px;
+  .map iframe {
+    height: 200px;
+  }
+  .profile p{
+    width: 100%;
   }
 }
 @media (max-width: 364px) {
@@ -572,10 +559,14 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   .profile .background-text {
     font-size: 60px;
   }
-  .map-button button {
-    font-size: 8px;
+  .map iframe { 
+    height: 150px;
+  }
+  .profile p{
+    width: 100%;
   }
 }
+
 
 
 /************ Projects Css ************/

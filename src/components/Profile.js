@@ -4,14 +4,10 @@ import TrackVisibility from 'react-on-screen';
 import 'animate.css';
 
 export const Profile = () => {
-  const handleButtonClick = () => {
-    window.location.href = 'https://maps.app.goo.gl/FQmsLQf8Jc2L4eKU7';
-  };
-
   const skills = [
     { name: "Html", rating: 5 },
     { name: "Css", rating: 5 },
-    { name: "JavaScript", rating: 5 },
+    { name: "JavaScript", rating: 4 },
     { name: "C++", rating: 2 },
     { name: "PHP", rating: 4 },
     { name: "Figma", rating: 3 },
@@ -48,14 +44,14 @@ export const Profile = () => {
             </div>
             <TrackVisibility>
               {({ isVisible }) =>
-                <p className={isVisible ? 'animate__animated animate__fadeInUp' : ''}>
+                <p className={isVisible ? 'animate__animated animate__fadeInRight' : ''}>
                   Hello I am Jhonvnbb. I am a student at the University of Lampung focusing on web development, and I am very enthusiastic and dedicated to my work. With 3 years of experience as a Web Developer, I have acquired the skills necessary to build great, high-quality websites.
                 </p>
               }
             </TrackVisibility>
             <TrackVisibility>
               {({ isVisible }) =>
-                <p className={isVisible ? 'animate__animated animate__fadeInUp' : ''}>
+                <p className={isVisible ? 'animate__animated animate__fadeInRight' : ''}>
                   Apart from web development, I have several hobbies that I pursue in my free time. I like playing music, especially guitar, and often spend time playing with friends. I also enjoy sports, especially football, which helps me stay active and healthy. Reading books, especially about technology and self-development, is another way I use to fill my free time and broaden my horizons.
                 </p>
               }
@@ -78,16 +74,22 @@ export const Profile = () => {
                 </div>
               ))}
             </div>
-            <div className="map-button mt-3">
-              <TrackVisibility>
-                {({ isVisible }) =>
-                  <button onClick={handleButtonClick} className={isVisible ? 'animate__animated animate__pulse' : ''}>
-                    <span>Click to Access My Address</span>
-                  </button>
-                }
-              </TrackVisibility>
-            </div>
           </div>
+        </div>
+        <div className="map mt-3">
+          <TrackVisibility>
+            {({ isVisible }) =>
+              <iframe
+                src="https://maps.google.com/maps?q=University%20of%20Lampung&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                frameBorder="0"
+                allowFullScreen
+                aria-hidden="false"
+                tabIndex="0"
+                title="Google Maps"
+                className={`w-100 ${isVisible ? 'animate__animated animate__fadeInUp' : ''}`}
+              ></iframe>
+            }
+          </TrackVisibility>
         </div>
       </div>
     </section>
