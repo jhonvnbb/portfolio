@@ -511,7 +511,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
     font-size: 90px;
   }
   .map iframe {
-    height: 300px;
+    height: 350px;
   }
   .profile p{
     width: 100%;
@@ -531,7 +531,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
     font-size: 80px;
   }
   .map iframe {
-    height: 250px;
+    height: 300px;
   }
   .profile p{
     width: 100%;
@@ -546,7 +546,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
     font-size: 70px;
   }
   .map iframe {
-    height: 200px;
+    height: 250px;
   }
   .profile p{
     width: 100%;
@@ -560,7 +560,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
     font-size: 60px;
   }
   .map iframe { 
-    height: 150px;
+    height: 200px;
   }
   .profile p{
     width: 100%;
