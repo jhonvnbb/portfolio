@@ -5,6 +5,7 @@ import navIcon2 from '../assets/img/icon-wa.svg';
 import navIcon3 from '../assets/img/icon-ig.svg';
 import { HashLink } from 'react-router-hash-link';
 import { BrowserRouter as Router } from "react-router-dom";
+import { ScrollToTopButton } from "./ScrollToTopButton";
 
 export const NavBar = () => {
 
@@ -51,13 +52,16 @@ export const NavBar = () => {
                 <a href="https://wa.me/6281375839812" target="__blank"><img src={navIcon2} alt="" /></a>
                 <a href="https://instagram.com/jhonnvnbb?igshid=OGQ5ZDc2ODk2ZA==" target="__blank"><img src={navIcon3} alt="" /></a>
               </div>
-              <HashLink to='#connect'>
-                <button className="vvd"><span>Contact Me</span></button>
-              </HashLink>
+              <div className="contact-me">
+                <HashLink smooth to='#connect'>
+                  <button className="vvd"><span>Contact Me</span></button>
+                </HashLink>
+              </div>
             </span>
           </Navbar.Collapse>
         </Container>
       </Navbar>
+      <ScrollToTopButton/>
     </Router>
   )
 }

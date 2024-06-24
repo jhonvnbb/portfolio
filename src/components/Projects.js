@@ -8,7 +8,7 @@ import projImg5 from "../assets/img/Portfolio1.png";
 import projImg6 from "../assets/img/Zovy1.png";
 import projImg7 from "../assets/img/AdiksiCoffee.png";
 import projImg8 from "../assets/img/QuickJob.png";
-import projImg9 from "../assets/img/Postread.png";
+import projImg9 from "../assets/img/Ngodrink.png";
 
 import 'animate.css';
 import TrackVisibility from 'react-on-screen';
@@ -57,14 +57,14 @@ export const Projects = () => {
       imgUrl: projImg8,
     },
     {
-      title: "Postread",
-      description: "Figma",
+      title: "Ngodrink",
+      description: "Kotlin",
       imgUrl: projImg9,
     },
   ];
 
-  const websiteProjects = projects.filter(project => project.title !== "Quick Job" && project.title !== "Postread");
-  const mobileProjects = projects.filter(project => project.title === "Quick Job" || project.title === "Postread");
+  const websiteProjects = projects.filter(project => project.title !== "Quick Job" && project.title !== "Ngodrink");
+  const mobileProjects = projects.filter(project => project.title === "Quick Job" || project.title === "Ngodrink");
 
   return (
   <section className="project" id="projects">
