@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 import { HashLink } from 'react-router-hash-link';
-import 'animate.css';
-import TrackVisibility from 'react-on-screen';
 
 export const ScrollToTopButton = () => {
   const [visible, setVisible] = useState(false);
@@ -23,7 +21,7 @@ export const ScrollToTopButton = () => {
   return (
     <div className={`scroll-to-top ${visible ? 'show' : ''}`}>
       <HashLink smooth to="#home">
-        <button>↑</button>
+        <button><i className='fas fa-arrow-up'></i></button>
       </HashLink>
     </div>
   );
