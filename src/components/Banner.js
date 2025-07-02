@@ -9,8 +9,7 @@ export const Banner = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [text, setText] = useState("");
   const [delta, setDelta] = useState(300 - Math.random() * 100);
-  const [index, setIndex] = useState(1);
-  const toRotate = ["Front End Dev,", "Back End Dev,", "Fullstack Dev,"];
+  const toRotate = ["Frontend Developer", "Backend Developer", "Fullstack Developer"];
   const period = 2000;
 
   const [showModal, setShowModal] = useState(false);
@@ -36,20 +35,16 @@ export const Banner = () => {
     setText(updatedText);
 
     if (isDeleting) {
-      setDelta((prevDelta) => prevDelta / 2);
+      setDelta(prevDelta => prevDelta / 2);
     }
 
     if (!isDeleting && updatedText === fullText) {
       setIsDeleting(true);
-      setIndex((prevIndex) => prevIndex - 1);
       setDelta(period);
     } else if (isDeleting && updatedText === "") {
       setIsDeleting(false);
       setLoopNum(loopNum + 1);
-      setIndex(1);
       setDelta(500);
-    } else {
-      setIndex((prevIndex) => prevIndex + 1);
     }
   };
 
@@ -58,66 +53,64 @@ export const Banner = () => {
 
   return (
     <section className="banner" id="home">
+      <div className="banner-background"></div>
       <Container>
         <Row className="align-items-center">
-          <Col xs={12} md={6} xl={7}>
+          <Col xs={12} md={6} xl={6}>
             <TrackVisibility once>
               {({ isVisible }) => {
                 if (isVisible && !hasAnimated) {
                   setHasAnimated(true);
                 }
                 return (
-                  <div
-                    className={
-                      hasAnimated ? "animate__animated animate__fadeInLeft" : ""
-                    }
-                  >
-                    <span className="tagline">Welcome to my Portfolio</span>
-                    <h1>
-                      {`Hi, I'm `}
-                      <span className="my-name">Jhonvnbb </span>
-                    </h1>
-                    <h1 className="mt-2 mb-5 fw-bold">
-                      <span
-                        className="txt-rotate"
-                        dataPeriod="1000"
-                        data-rotate='[ "Web Developer", "Web Designer", "UI/UX Designer" ]'
-                      >
-                        <span className="wrap">{text}</span>
-                      </span>
-                    </h1>
-                    <p>
-                      "Embrace challenges as stepping stones to success. Your
-                      resilience defines you. Believe in your journey, stay
-                      focused, and conquer every obstacle. You've got this!"
+                  <div className={`banner-content ${hasAnimated ? "animate__animated animate__fadeInLeft" : ""}`}>
+                    <div className="greeting-wrapper">
+                      <span className="greeting">Hello, my name is</span>
+                      <h1 className="name">
+                        <span className="name-highlight">Jhonvnbb</span>
+                      </h1>
+                      <div className="title-wrapper">
+                        <h2 className="title">
+                          <span className="title-text">I'm a </span>
+                          <span className="rotating-text">{text}</span>
+                          <span className="typing-cursor">|</span>
+                        </h2>
+                      </div>
+                    </div>
+                    <p className="description">
+                      Crafting digital experiences with clean code and thoughtful design.
+                      Passionate about building responsive, accessible, and performant web applications.
                     </p>
-                    <button
-                      className="animate__animated animate__pulse animate__infinite"
-                      onClick={handleShowModal}
-                    >
-                      View CV
-                    </button>
+                    <div className="cta-buttons">
+                      <button 
+                        className="view-cv-btn"
+                        onClick={handleShowModal}
+                      >
+                        <span>View CV</span>
+                      </button>
+                      <a href="#projects" className="view-work-btn">
+                        <span>See My Work</span>
+                      </a>
+                    </div>
                   </div>
                 );
               }}
             </TrackVisibility>
           </Col>
-          <Col xs={12} md={6} xl={5}>
+          <Col xs={12} md={6} xl={6}>
             <TrackVisibility once>
-              {({ isVisible }) => {
-                if (isVisible && !hasAnimated) {
-                  setHasAnimated(true);
-                }
-                return (
-                  <div
-                    className={
-                      hasAnimated ? "animate__animated animate__zoomIn" : ""
-                    }
-                  >
-                    <img src={headerImg} alt="Header Img" />
+              {({ isVisible }) => (
+                <div className={`profile-wrapper ${isVisible ? "animate__animated animate__fadeInRight" : ""}`}>
+                  <div className="profile-image-container">
+                    <img src={headerImg} alt="Profile" className="profile-image" />
+                    <div className="tech-stack">
+                      <span className="tech-tag-banner"></span>
+                      <span className="tech-tag-banner"></span>
+                      <span className="tech-tag-banner"></span>
+                    </div>
                   </div>
-                );
-              }}
+                </div>
+              )}
             </TrackVisibility>
           </Col>
         </Row>
@@ -127,22 +120,25 @@ export const Banner = () => {
         show={showModal}
         onHide={handleCloseModal}
         size="lg"
-        className="custom-modal"
+        centered
+        className="cv-modal"
       >
         <Modal.Header closeButton>
-          <Modal.Title>My CV</Modal.Title>
+          <Modal.Title className="modal-title">My Professional CV</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className="modal-body">
           <embed
             src={require("../assets/img/JhonVNababan-CV.pdf")}
             type="application/pdf"
-            width="100%"
-            height="500px"
+            className="pdf-embed"
           />
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseModal}>
+        <Modal.Footer className="modal-footer">
+          <Button variant="primary" onClick={handleCloseModal} className="close-btn">
             Close
+          </Button>
+          <Button variant="success" className="download-btn">
+            Download CV
           </Button>
         </Modal.Footer>
       </Modal>

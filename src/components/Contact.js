@@ -1,119 +1,194 @@
 import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import Swal from 'sweetalert2';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import headerImg from "../assets/img/profile-logo.png";
 import contactImg from "../assets/img/contact-boss.png";
 import 'animate.css';
 import TrackVisibility from 'react-on-screen';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 export const Contact = () => {
-  const formInitialDetails = {
+  const [formDetails, setFormDetails] = useState({
     firstName: '',
     lastName: '',
     email: '',
     phone: '',
     message: ''
-  }
-  const [formDetails, setFormDetails] = useState(formInitialDetails);
-  const [buttonText, setButtonText] = useState('Send');
-  const [status, setStatus] = useState({});
+  });
+  const [buttonText, setButtonText] = useState('Submit');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const onFormUpdate = (category, value) => {
     setFormDetails({
       ...formDetails,
       [category]: value
-    })
-  }
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setButtonText("Sending Message ..");
-    let response = await fetch("http://localhost:5000/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-      },
-      body: JSON.stringify(formDetails),
-    });
-    setButtonText("Send");
-    let result = await response.json();
-    setFormDetails(formInitialDetails);
-    if (result.code === 200) {
-      setStatus({ success: true, message: 'Message sent successfully' });
+    setIsSubmitting(true);
+    setButtonText("Sending...");
+    
+    // Simulate API call
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setButtonText("Submit");
       showSuccessToast();
-    } else {
-      setStatus({ success: false, message: 'Something went wrong, please try again later.' });
-      showErrorToast();
-    }
+      setFormDetails({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        message: ''
+      });
+    }, 1500);
   };
 
   const showSuccessToast = () => {
     toast.success('Message sent successfully!', {
       position: "top-right",
-      autoClose: 7000,
+      autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      theme: "colored"
+      theme: "dark",
+      className: 'code-toast'
     });
-  }
-
-  const showErrorToast = () => {
-    toast.error('Something went wrong, please try again later.', {
-      position: "top-right",
-      autoClose: 7000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored"
-    });
-  }
+  };
 
   return (
-    <section className="contact" id="connect">
+    <section className="code-contact" id="connect">
+      <div className="code-bg-elements">
+        <div className="code-line"></div>
+        <div className="code-bracket"></div>
+      </div>
+      
       <Container>
         <Row className="align-items-center">
-          <Col xs={12} md={6}>
+          <Col xs={12} md={6} xl={6}>
             <TrackVisibility once>
-              {({ isVisible }) =>
-                <div className={isVisible ? "animate__animated animate__zoomIn" : ""}>
-                  <img src={contactImg} alt="Contact Us" />
+              {({ isVisible }) => (
+                <div className={`profile-wrapper ${isVisible ? "animate__animated animate__fadeInRight" : ""}`}>
+                  <div className="profile-image-container">
+                    <img src={contactImg} alt="Profile" className="profile-image" />
+                    <div className="tech-stack">
+                      <span className="tech-tag-banner"></span>
+                      <span className="tech-tag-banner"></span>
+                      <span className="tech-tag-banner"></span>
+                    </div>
+                  </div>
                 </div>
-              }
+              )}
             </TrackVisibility>
           </Col>
-          <Col xs={12} md={6}>
+          
+          <Col xs={12} md={6} xl={6}>
             <TrackVisibility once>
               {({ isVisible }) =>
                 <div className={isVisible ? "animate__animated animate__fadeInRight" : ""}>
-                  <div className="heading-container">
-                    <h2><span className="me-1">C</span>ontact</h2>
-                    <div className="background-text">CONTACT</div>
+                  <div className="contact-header">
+                    <h2 className="code-section-title">
+                      <span className="code-tag">{"<"}</span>
+                      <span className="code-title">Connect</span>
+                      <span className="code-title-accent">WithMe</span>
+                      <span className="code-tag">{"/>"}</span>
+                    </h2>
+                    <div className="code-line-divider"></div>
+                    <p className="contact-subtitle">
+                      <span className="prompt">$</span> Fill out the form or connect through my socials
+                    </p>
                   </div>
-                  <form onSubmit={handleSubmit} className="mt-5">
-                    <Row>
-                      <Col xs={12} sm={6} className="px-1">
-                        <input type="text" value={formDetails.firstName} placeholder="First Name" onChange={(e) => onFormUpdate('firstName', e.target.value)} required />
-                      </Col>
-                      <Col xs={12} sm={6} className="px-1">
-                        <input type="text" value={formDetails.lastName} placeholder="Last Name" onChange={(e) => onFormUpdate('lastName', e.target.value)} required/>
-                      </Col>
-                      <Col xs={12} sm={6} className="px-1">
-                        <input type="email" value={formDetails.email} placeholder="Email" onChange={(e) => onFormUpdate('email', e.target.value)} required/>
-                      </Col>
-                      <Col xs={12} sm={6} className="px-1">
-                        <input type="tel" value={formDetails.phone} placeholder="No. HP" onChange={(e) => onFormUpdate('phone', e.target.value)} required/>
-                      </Col>
-                      <Col xs={12} className="px-1">
-                        <textarea rows="6" value={formDetails.message} placeholder="Message" onChange={(e) => onFormUpdate('message', e.target.value)} required></textarea>
-                        <button type="submit" className="animate__animated animate__pulse animate__infinite"><span>{buttonText}</span></button>
-                      </Col>
-                    </Row>
+                  
+                  <form onSubmit={handleSubmit} className="code-contact-form">
+                    <div className="form-grid">
+                      <div className="form-group">
+                        <label htmlFor="firstName" className="input-label">
+                          <span className="code-tag">firstName</span>
+                        </label>
+                        <input
+                          type="text"
+                          id="firstName"
+                          value={formDetails.firstName}
+                          onChange={(e) => onFormUpdate('firstName', e.target.value)}
+                          className="code-input"
+                          required
+                        />
+                      </div>
+                      
+                      <div className="form-group">
+                        <label htmlFor="lastName" className="input-label">
+                          <span className="code-tag">lastName</span>
+                        </label>
+                        <input
+                          type="text"
+                          id="lastName"
+                          value={formDetails.lastName}
+                          onChange={(e) => onFormUpdate('lastName', e.target.value)}
+                          className="code-input"
+                          required
+                        />
+                      </div>
+                      
+                      <div className="form-group">
+                        <label htmlFor="email" className="input-label">
+                          <span className="code-tag">email</span>
+                        </label>
+                        <input
+                          type="email"
+                          id="email"
+                          value={formDetails.email}
+                          onChange={(e) => onFormUpdate('email', e.target.value)}
+                          className="code-input"
+                          required
+                        />
+                      </div>
+                      
+                      <div className="form-group">
+                        <label htmlFor="phone" className="input-label">
+                          <span className="code-tag">phone</span>
+                        </label>
+                        <input
+                          type="tel"
+                          id="phone"
+                          value={formDetails.phone}
+                          onChange={(e) => onFormUpdate('phone', e.target.value)}
+                          className="code-input"
+                          required
+                        />
+                      </div>
+                      
+                      <div className="form-group full-width">
+                        <label htmlFor="message" className="input-label">
+                          <span className="code-tag">message</span>
+                        </label>
+                        <textarea
+                          id="message"
+                          rows="5"
+                          value={formDetails.message}
+                          onChange={(e) => onFormUpdate('message', e.target.value)}
+                          className="code-textarea"
+                          required
+                        ></textarea>
+                      </div>
+                      
+                      <button 
+                        type="submit" 
+                        className={`code-submit-btn ${isSubmitting ? 'submitting' : ''}`}
+                        disabled={isSubmitting}
+                      >
+                        <span className="btn-text">{buttonText}</span>
+                        {isSubmitting && (
+                          <span className="btn-loader">
+                            <span className="loader-dot"></span>
+                            <span className="loader-dot"></span>
+                            <span className="loader-dot"></span>
+                          </span>
+                        )}
+                      </button>
+                    </div>
                   </form>
                 </div>
               }
@@ -123,5 +198,5 @@ export const Contact = () => {
       </Container>
       <ToastContainer />
     </section>
-  )
-}
+  );
+};

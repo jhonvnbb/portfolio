@@ -1,67 +1,143 @@
 import { useState, useEffect } from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
-import navIcon1 from '../assets/img/icon-github.svg';
-import navIcon2 from '../assets/img/icon-wa.svg';
-import navIcon3 from '../assets/img/icon-ig.svg';
+import { CodeSlash, Github, Whatsapp, Instagram, ArrowUp } from "react-bootstrap-icons";
 import { HashLink } from 'react-router-hash-link';
 import { BrowserRouter as Router } from "react-router-dom";
-import { ScrollToTopButton } from "./ScrollToTopButton";
 
 export const NavBar = () => {
-
   const [activeLink, setActiveLink] = useState('home');
   const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    }
+      setScrolled(window.scrollY > 10);
+    };
 
     window.addEventListener("scroll", onScroll);
-
     return () => window.removeEventListener("scroll", onScroll);
-  }, [])
+  }, []);
 
   const onUpdateActiveLink = (value) => {
     setActiveLink(value);
-  }
+    setMobileOpen(false);
+  };
 
   return (
     <Router>
-      <Navbar expand="md" className={scrolled ? "scrolled" : ""}>
-        <Container>
-          <Navbar.Brand href="/">
-            <span className="me-2">J</span>honvnbb
+      <Navbar 
+        expand="lg" 
+        fixed="top"
+        className={`modern-navbar ${scrolled ? "scrolled" : ""} ${mobileOpen ? "mobile-open" : ""}`}
+        expanded={mobileOpen}
+        onToggle={() => setMobileOpen(!mobileOpen)}
+      >
+        <Container fluid className="nav-container">
+          {/* Left Side - Only Name */}
+          <Navbar.Brand href="/" className="brand">
+            <span className="code-symbol">{'</>'}</span>
+            <span className="brand-name">Jhonvnbb</span>
+            <span className="cursor-blink">_</span>
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav">
-            <span className="navbar-toggler-icon"></span>
-          </Navbar.Toggle>
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="linku ms-auto">
-              <Nav.Link href="#home" className={activeLink === 'home' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('home')}>Home</Nav.Link>
-              <Nav.Link href="#about" className={activeLink === 'about' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('about')}>About</Nav.Link>
-              <Nav.Link href="#projects" className={activeLink === 'projects' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('projects')}>Projects</Nav.Link>
-            </Nav>
-            <span className="navbar-text">
-              <div className="social-icon">
-                <a href="https://github.com/jhonvnbb" target="__blank"><img src={navIcon1} alt="" /></a>
-                <a href="https://wa.me/6281375839812" target="__blank"><img src={navIcon2} alt="" /></a>
-                <a href="https://instagram.com/jhonnvnbb?igshid=OGQ5ZDc2ODk2ZA==" target="__blank"><img src={navIcon3} alt="" /></a>
-              </div>
-              <div className="contact-me">
-                <HashLink smooth to='#connect'>
-                  <button className="vvd"><span>Contact Me</span></button>
+
+          {/* Right Side - Navigation Elements */}
+          <div className="nav-right-content">
+            <Navbar.Toggle 
+              aria-controls="navbar-nav" 
+              className="hamburger"
+            >
+              <div className={`hamburger-inner ${mobileOpen ? "active" : ""}`}></div>
+            </Navbar.Toggle>
+            
+            <Navbar.Collapse id="navbar-nav" className="navbar-collapse-content">
+              <Nav className="nav-links">
+                <Nav.Link 
+                  href="#home" 
+                  className={`nav-link ${activeLink === 'home' ? 'active' : ''}`}
+                  onClick={() => onUpdateActiveLink('home')}
+                >
+                  <span className="nav-number">01.</span>
+                  <span className="nav-text">Home</span>
+                </Nav.Link>
+                <Nav.Link 
+                  href="#about" 
+                  className={`nav-link ${activeLink === 'about' ? 'active' : ''}`}
+                  onClick={() => onUpdateActiveLink('about')}
+                >
+                  <span className="nav-number">02.</span>
+                  <span className="nav-text">About</span>
+                </Nav.Link>
+                <Nav.Link 
+                  href="#projects" 
+                  className={`nav-link ${activeLink === 'projects' ? 'active' : ''}`}
+                  onClick={() => onUpdateActiveLink('projects')}
+                >
+                  <span className="nav-number">03.</span>
+                  <span className="nav-text">Projects</span>
+                </Nav.Link>
+              </Nav>
+
+              <div className="nav-actions">
+                <div className="social-icons">
+                  <a href="https://github.com/jhonvnbb" target="_blank" rel="noopener noreferrer" className="social-icon">
+                    <Github className="icon" />
+                  </a>
+                  <a href="https://wa.me/62895346053848" target="_blank" rel="noopener noreferrer" className="social-icon">
+                    <Whatsapp className="icon" />
+                  </a>
+                  <a href="https://instagram.com/jhonnvnbb" target="_blank" rel="noopener noreferrer" className="social-icon">
+                    <Instagram className="icon" />
+                  </a>
+                </div>
+                
+                <HashLink 
+                  smooth 
+                  to='#connect' 
+                  className="contact-btn"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  <span>Contact Me</span>
                 </HashLink>
               </div>
-            </span>
-          </Navbar.Collapse>
+            </Navbar.Collapse>
+          </div>
         </Container>
       </Navbar>
-      <ScrollToTopButton/>
+      <ScrollToTopButton />
     </Router>
-  )
-}
+  );
+};
+
+export const ScrollToTopButton = () => {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const toggleVisibility = () => {
+      if (window.scrollY > 300) {
+        setVisible(true);
+      } else {
+        setVisible(false);
+      }
+    };
+
+    window.addEventListener('scroll', toggleVisibility);
+    return () => window.removeEventListener('scroll', toggleVisibility);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
+  return (
+    <button 
+      className={`scroll-to-top ${visible ? 'show' : ''}`}
+      onClick={scrollToTop}
+      aria-label="Scroll to top"
+    >
+      <ArrowUp className="arrow-icon" />
+    </button>
+  );
+};

@@ -1,32 +1,84 @@
 import { Container, Row, Col } from "react-bootstrap";
-import navIcon1 from "../assets/img/icon-github.svg";
-import navIcon2 from "../assets/img/icon-wa.svg";
-import navIcon3 from "../assets/img/icon-ig.svg";
+import { CodeSlash, Github, Whatsapp, Instagram } from "react-bootstrap-icons";
 
 export const Footer = () => {
   return (
-    <footer className="footer">
+    <footer className="code-footer">
+      <div className="footer-top-border"></div>
       <Container>
         <Row className="align-items-center">
-          <Col size={12} sm={6}>
-            <div className="link-footer text-center my-2">
-              <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
+          <Col xs={12} md={6}>
+            <div className="footer-links">
+              <ul className="footer-nav">
+                <li className="nav-item">
+                  <a href="#home" className="nav-link">
+                    <span className="code-tag">&lt;</span>Home<span className="code-tag">/&gt;</span>
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a href="#about" className="nav-link">
+                    <span className="code-tag">&lt;</span>About<span className="code-tag">/&gt;</span>
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a href="#projects" className="nav-link">
+                    <span className="code-tag">&lt;</span>Projects<span className="code-tag">/&gt;</span>
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a href="#connect" className="nav-link">
+                    <span className="code-tag">&lt;</span>Contact<span className="code-tag">/&gt;</span>
+                  </a>
+                </li>
               </ul>
             </div>
           </Col>
-          <Col size={12} sm={6} className="text-center text-sm-end">
-            <div className="social-icon-footer">
-              <a href="https://github.com/jhonvnbb" target="__blank"><img src={navIcon1} alt="Icon" /></a>
-              <a href="https://wa.me/6281375839812" target="__blank"><img src={navIcon2} alt="Icon" /></a>
-              <a href="https://instagram.com/jhonnvnbb?igshid=OGQ5ZDc2ODk2ZA==" target="__blank"><img src={navIcon3} alt="Icon" /></a>
+          <Col xs={12} md={6}>
+            <div className="footer-social">
+              <div className="social-icons-footer">
+                <a 
+                  href="https://github.com/jhonvnbb" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="social-icon"
+                  aria-label="GitHub"
+                >
+                  <Github className="icon" />
+                  <span className="icon-tooltip">GitHub</span>
+                </a>
+                <a 
+                  href="https://wa.me/6281375839812" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="social-icon"
+                  aria-label="WhatsApp"
+                >
+                  <Whatsapp className="icon" />
+                  <span className="icon-tooltip">WhatsApp</span>
+                </a>
+                <a 
+                  href="https://instagram.com/jhonnvnbb" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="social-icon"
+                  aria-label="Instagram"
+                >
+                  <Instagram className="icon" />
+                  <span className="icon-tooltip">Instagram</span>
+                </a>
+              </div>
+              <div className="footer-copyright">
+                <CodeSlash className="code-icon" />
+                <p>
+                  <span className="code-comment">// Copyright © {new Date().getFullYear()} Jhonvnbb</span>
+                  <br />
+                  <span className="code-comment">// All rights reserved</span>
+                </p>
+              </div>
             </div>
-            <p>&copy; Copyright 2024. Protected by law</p>
           </Col>
         </Row>
       </Container>
     </footer>
-  )
-}
+  );
+};
